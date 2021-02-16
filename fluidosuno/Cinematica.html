@@ -104,29 +104,93 @@
             font-size: 0.5em;
             line-height: 10%;
         }
+
+        .blockquote {
+            border-left: 5px solid #ccc;
+            margin: 1.5em 50px;
+            margin-left: 0.5em;
+        }
         
     </style>
 </head>
 
 <body>
     <textarea id="source">
+name: trayectoria
 class: left
-#Trayectorias y Sendas
-<br/>
-
+##Trayectoria
 
 La trayectoria es la ley que da la posición de una partícula fluida como función del tiempo y de su posición inicial. Si se conoce el campo de velocidades, 
 $\mathbf{v}(\mathbf{x},t)$, la trayectoria responde a la ecuación $$ \frac{\mathrm{d}\mathbf{x}}{\mathrm{d} t} = \mathbf{v}(\mathbf{x},t). \tag{1}$$    
 
+--
 Esta ecuación representa las trayectorias de todas las partículas fluidas por lo que para elegir una trayectoria en concreto se 
 debe elegir una única partículas fluida imponiendo su posición en un instante determinado mediante una condición de contorno:
 
 $$ t = t_0: \mathbf{x} = \mathbf{x}_0. $$
 
+--
+La solución será de la forma:
+
+$$ \mathbf{x} = \mathbf{x}_t(t,\mathbf{x}_0). $$
+
+
 ---
-name: toc
+name: ejtray
 class: left
-##Trayectorias y Sendas
+##Ejemplo
+<br/>
+Sea un campo fluido bidimensional del que se conoce su velocidad en cada punto, $(v_x, v_y) = (x, \sqrt{t})$.
+
+--
+
+¿Cuál es la trayectoria de una partícula fluida que en el instante inicial pasa por el punto $(0.1,0)$?
+
+---
+class: left
+##Ejemplo
+<br/>
+
+Para la componente $x$ se tiene
+
+$$ \frac{\mathrm{d}\{x}}{\mathrm{d} t} = v_x \rightarrow \frac{\mathrm{d}\{x}}{\mathrm{d} t} = x \rightarrow \frac{\mathrm{d}{x}}{x} = \mathrm{d} t. $$
+
+--
+Integramos y obtenemos
+$$ \ln{\frac{x}{x_0}} = t-t_0 \rightarrow x = x_0\exp{(t-t_0)}. $$
+
+---
+class: left
+##Ejemplo
+<br/>
+
+Para la componente $y$ se tiene
+
+$$ \frac{\mathrm{d}\{y}}{\mathrm{d} t} = v_y \rightarrow \frac{\mathrm{d}\{y}}{\mathrm{d} t} = \sqrt{t} \rightarrow \mathrm{d}{y} = t^{1/2}\mathrm{d} t. $$
+
+--
+Integramos y obtenemos
+$$ y-y_0 = \frac{2}{3}(t^{3/2}-t_0^{3/2}). $$
+
+---
+name: senda
+class: left
+##Senda
+
+La senda es la curva que recorre por la partículas fluida en su movimiento. Para obtener la ecuación de las senda se debe eliminar el tiempo de la ecuación de la trayectoria donde actúa como un parámetro.
+
+--
+
+La diferencia entre la senda y el trayectoria, es que no podemos conocer la posición instantánea de la partícula fluida sobre la senda, sino únicamente el camino que ha recorrido ésta.
+
+--
+
+La solución será de la forma:
+
+$$ \mathbf{x} = \mathbf{x}_s(\mathbf{x}_0). $$
+
+---
+
 
 
 
