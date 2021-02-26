@@ -1,0 +1,32 @@
+ <html>
+   
+
+ <body>
+
+<div>
+
+<script src="../javascript/showdown-katex.js"></script>
+<script src="../javascript/showdown-katex.spec.js"></script>
+
+
+
+<script>
+    const converter = new showdown.Converter({
+      extensions: [
+        showdownKatex({
+          // maybe you want katex to throwOnError
+          throwOnError: true,
+          // disable displayMode
+          displayMode: false,
+          // change errorColor to blue
+          errorColor: '#1500ff',
+        }),
+      ],
+    });
+    converter.makeHtml('$$x=2$$');
+  </script>
+
+</div>
+
+ </body>
+ </html>
