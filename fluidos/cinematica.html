@@ -124,7 +124,7 @@ class: center, middle
 .author[Victor Muntean]  
 .institution[ [ETSI Aeronáutica y del Espacio, UPM](https://www.etsiae.upm.es/)]
 <br/><br/>
-.date[Versión 16.02.2021] 
+.date[Versión 31.03.2021] 
 
 
 ---
@@ -353,7 +353,7 @@ La línea de corriente es una línea que, en un instante dado, es tangente en ca
 
 --
 
-Utilizando la longitud $l$ sobre la línea de corriente como parámetro, su tangente se puede epresar como
+Utilizando como parámetro la longitud $l$ sobre la línea de corriente, su tangente se puede expresar como
 $$ \mathbf{t} = \frac{\mathrm{d}\mathbf{x}}{\mathrm{d}l}. $$
 
 --
@@ -361,12 +361,64 @@ $$ \mathbf{t} = \frac{\mathrm{d}\mathbf{x}}{\mathrm{d}l}. $$
 De esta forma la ecuación que describe la línea de corriente queda:
 $$ \frac{\mathrm{d}\mathbf{x}}{\mathrm{d}l} = \frac{\mathbf{v}(\mathbf{x},t)}{\| \mathbf{v}(\mathbf{x},t) \|} \quad \mathrm{con}\ \mathbf{x}=\mathbf{x}_0\ \mathrm{en} \ l=0. $$
 
+---
+name: ejlc
+class: left
+##Ejemplo
+<br/>
+Volviendo al ejemplo del campo fluido bidimensional con $(v_x, v_y) = (x, \sqrt{t})$, se pretende calcular la línea de corriente que pasa por el punto $(x_0, y_0)$ en $l=0$.
 
+--
+
+La ecuación que decribe las líneas de corriente se puede escribir para cada componente por separado,
+$$ \frac{\mathrm{d}x}{\mathrm{d}l} = \frac{v_x}{\| \mathbf{v} \|} \qquad \frac{\mathrm{d}y}{\mathrm{d}l} = \frac{v_y}{\| \mathbf{v} \|}. $$
+
+--
+Eliminando el parámetro $l$ y el módulo de la velocidad de estas ecuaciones se obtiene la igualdad que describe las líneas de corriente para este caso bidimensional,
+$$ \frac{\mathrm{d}x}{v_x} = \frac{\mathrm{d}y}{v_y}. $$
 
 ---
-class: center, middle
+class: left
+##Ejemplo
+<br/>
+Incorporando la condición de contorno se obtiene la expresión de la línea de corriente que pasa por el punto $(x_0, y_0)$.
 
-Por completar...
+$$ y = y_0 + \sqrt{t}\ln \left(\frac{x}{x_0}\right). $$
+
+--
+
+En la expresión obtenida se puede ver claramente que la línea de corriente varía con el tiempo, aunque siempre esté anclada al punto fijo $(x_0, y_0)$.
+
+---
+class: center
+##Ejemplo
+
+<embed src="./figures/SLC.svg">
+
+Línea de corriente que pasa por el punto $(10, 0)$ en rojo junto con los vectores de velocidad en algunos de sus puntos. Se puede apreciar la tangencia de estos vectores a la línea de corriente.
+
+---
+class: center
+##Ejemplo
+
+<embed src="./figures/LC.svg">
+
+Evolución de líneas de corriente ancladas en $x=0$ y equiespaciadas una unidad en dirección $y$. Superpuesto se presenta el campo de vectores de velocidad.
+
+---
+class: left
+##Conclusión
+<br/>
+En esta presentación se ha intentado mostrar mediante un resumen teórico y un sencillo ejemplo las diferencias que hay entre las distintas líneas que 
+aparecen en la cinemática de los fluidos.
+
+La intención de esta presentación es esclarecer cuáles son las diferencias entre los distintos tipos de líneas en el caso **no estacionario**. En el caso estacionario las líneas coinciden.
+
+S   e ha recurrido a 
+animaciones con botones de control para que, a diferencia de lo que ocurre con los apuntes tradicionales, el alumno pueda participar activamente en el aprendizaje de los conceptos 
+aquí presentados.
+
+Se pretende que el hecho de poder parar y analizar los gráficos para distintos instantes de tiempo, consiga mejorar el aprendizaje de los conceptos aquí expuestos.
 
 
 
