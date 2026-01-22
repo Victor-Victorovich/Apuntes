@@ -4,4 +4,10 @@
   <url>
     <loc>http://localhost:3000</loc>
   </url>
+  <url>
+    <loc>http://localhost:3000/intro</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/cinematica</loc>
+  </url>
 </urlset>
