@@ -1,1 +1,1 @@
-{"version":"1","myst":"1.8.0","references":[{"kind":"page","data":"/index.json","url":"/"},{"identifier":"proyecto-blah-blah-blah","kind":"heading","data":"/index.json","url":"/","implicit":true},{"kind":"page","data":"/equipos.json","url":"/equipos"},{"identifier":"horiba","kind":"heading","data":"/equipos.json","url":"/equipos","implicit":true}]}
+{"version":"1","myst":"1.8.0","references":[{"kind":"page","data":"/index.json","url":"/"},{"identifier":"proyecto-blah-blah-blah","kind":"heading","data":"/index.json","url":"/","implicit":true}]}

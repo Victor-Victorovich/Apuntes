@@ -4,7 +4,4 @@
   <url>
     <loc>http://localhost:3000</loc>
   </url>
-  <url>
-    <loc>http://localhost:3000/equipos</loc>
-  </url>
 </urlset>
