@@ -5,15 +5,6 @@
     <loc>http://localhost:3000</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/gaseosas</loc>
-  </url>
-  <url>
     <loc>http://localhost:3000/equipos</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/calibration</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/markdown-notebooks</loc>
   </url>
 </urlset>
