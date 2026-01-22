@@ -2,8 +2,8 @@
 version: 1
 project:
   id: 0d5b23a0-628c-4c03-b6f9-c0e5b83d840f
-  title: Manual de uso para campaña
-  description: Uso y mucho
+  title: Apuntes de mecánica de fluidos
+  description: Apuntes varios de las asignaturas de mecánica de fluidos que imparto.
   license: CC-BY-4.0
   # keywords: []
   authors: 
@@ -13,21 +13,17 @@ project:
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
   toc:
     - file: inicio.md
-      title: Getting Started
-    - title: Emisiones
+    - title: Mecánica de Fluidos
       children:
-        - file: gaseosas.md
-        - file: equipos.md
-        - file: calibration.md
-        - title: Emisiones gaseosas
-          file: markdown-notebooks.md
+        - file: intro.md
+        - file: cinematica.md
+
 
 # Add a bibtex file so that we can create citations
 bibliography:
   - references.bib
 
 site:
-  #base_Url: /Manual # Arregla el error de estilos y raiz. 
   template: book-theme
   # options:
   #   favicon: favicon.ico
