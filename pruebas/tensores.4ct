@@ -1,3 +1,0 @@
-\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
-\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{2}{x2-1000}{QQ2-2-1}{Notaci\'on tensorial y operadores diferenciales en mec\'anica de fluidos}}{1}\relax 
-\par 
