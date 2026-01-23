@@ -1,3 +1,8 @@
+---
+kernelspec:
+  name: python3
+  display_name: 'Python 3'
+---
 
 # Cinemática
 
@@ -73,9 +78,6 @@ y &=\frac{2}{3}t^{3/2}.
 % Fin ejemplo
 ---
 
----
-class: center
-##Ejemplo
 
 <embed src="./figures/Trayectoria_1.svg">
 
@@ -89,66 +91,12 @@ Trayectoria de la partícula fluida que inicialmente está en el punto $(0.1, 0)
 
 Esta animación muestra la evolución de una trayectoria en el tiempo.
 
-```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-from IPython.display import HTML
-
-# Configuración de estilo
-plt.rcParams.update({
-    'axes.labelsize': 18,
-    'font.size': 18,
-    'xtick.labelsize': 18,
-    'ytick.labelsize': 18
-})
+```{code-cell} python
+:label: markdown-myst
+print("Here's some python!")
 ```
 
-```{code-cell} ipython3
-# Preparar datos
-T = np.linspace(0, 7, 60)
-X = []
-Y = []
-x0 = 0.1
-y0 = 0
 
-for t in T:
-    x = x0 * np.exp(t)
-    y = y0 + 2 * t**1.5 / 3
-    X.append(x)
-    Y.append(y)
-
-# Crear la figura y los ejes
-fig, ax = plt.subplots(figsize=(8, 6))
-ax.set_xlim(0, 100)
-ax.set_ylim(0, 10)
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-
-line, = ax.plot([], [], 'b', linewidth=2)
-point, = ax.plot([], [], 'bo', markersize=8)
-title = ax.set_title('')
-
-def init():
-    line.set_data([], [])
-    point.set_data([], [])
-    title.set_text('')
-    return line, point, title
-
-def animate(i):
-    line.set_data(X[:i+1], Y[:i+1])
-    point.set_data([X[i]], [Y[i]])
-    title.set_text(f'$t={T[i]:.2f}$')
-    return line, point, title
-
-# Crear la animación
-anim = FuncAnimation(fig, animate, init_func=init, 
-                     frames=len(T), interval=100, 
-                     blit=True, repeat=True)
-
-# Mostrar la animación
-HTML(anim.to_jshtml())
-```
 
 
 
@@ -157,8 +105,8 @@ HTML(anim.to_jshtml())
 Esta animación muestra la evolución de una trayectoria en el tiempo.
 
 ```{code-cell} python
-%:tags: [remove-input]
 # Data for plotting
+import numpy as np
 t = np.arange(0.0, 2.0, 0.01)
 s = 1 + np.sin(2 * np.pi * t)
 
