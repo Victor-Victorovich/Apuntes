@@ -1,4 +1,4 @@
-# Medida de las emisiones gaseosas
+# Introducción
 
 Se deben medir la concentración de las siguientes emisiones gaseosas:
 1. Hidrocarburos (HC):  todos los compuestos de hidrocarburos de los gases de escape;
