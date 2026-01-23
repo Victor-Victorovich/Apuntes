@@ -26,7 +26,7 @@ jobs:
           # Si tienes un requirements.txt, úsalo:
           # pip install -r requirements.txt 
           # O instala las que necesites a mano:
-          # pip install matplotlib pandas numpy
+          pip install matplotlib pandas numpy
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
