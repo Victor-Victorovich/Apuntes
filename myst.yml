@@ -8,7 +8,9 @@ project:
   # keywords: []
   authors: 
     - name: Victor Muntean Erhan
-
+  execution:
+      policy: force # Las opciones son: execute, force, o cache
+      timeout: 30     # Tiempo máximo por celda en segundos
   # github:
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
   toc:

@@ -22,7 +22,7 @@ jobs:
 
       - name: Build HTML
         # En MyST v2 usamos la variable de entorno BASE_URL
-        run: myst build --html
+        run: myst build --execute --html
         env:
           BASE_URL: /${{ github.event.repository.name }}
 
