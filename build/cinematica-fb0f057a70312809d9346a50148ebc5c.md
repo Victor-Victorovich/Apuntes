@@ -1,84 +1,77 @@
 
----
-name: trayectoria
-class: left
-##Trayectoria
+# Cinemática
+
+## Trayectoria
 
 La trayectoria es la ley que da la posición de una partícula fluida como función del tiempo y de su posición inicial. Si se conoce el campo de velocidades, 
 $\mathbf{v}(\mathbf{x},t)$, la trayectoria responde a la ecuación $$ \frac{\mathrm{d}\mathbf{x}}{\mathrm{d} t} = \mathbf{v}(\mathbf{x},t).$$    
 
---
+
 Esta ecuación representa las trayectorias de todas las partículas fluidas por lo que para elegir una trayectoria en concreto se 
 debe elegir una única partícula fluida imponiendo su posición en un instante determinado mediante una condición inicial:
 
 $$ t = t_0: \mathbf{x} = \mathbf{x}_0. $$
 
---
+
 La solución será de la forma:
 
 $$ \mathbf{x} = \mathbf{x}_t(t,\mathbf{x}_0). $$
 
-
 ---
-name: ejtray
-class: left
-##Ejemplo
-<br/>
+## Ejemplo
 Sea un campo fluido bidimensional del que se conoce su velocidad en cada punto, $(v_x, v_y) = (x, \sqrt{t})$.
-
---
 
 ¿Cuál es la trayectoria de una partícula fluida que en el instante inicial pasa por el punto $(0.1,0)$?
 
----
-class: left
-##Ejemplo
-<br/>
-
+:::{tip} Solución
+:class: dropdown
+:open: false
 Para la componente $x$ se tiene
 
-$$ \frac{\mathrm{d}\{x}}{\mathrm{d} t} = v_x \rightarrow \frac{\mathrm{d}\{x}}{\mathrm{d} t} = x \rightarrow \frac{\mathrm{d}{x}}{x} = \mathrm{d} t. $$
+ 
+\begin{equation*} 
+\frac{\mathrm{d} x}{\mathrm{d} t} = v_x \rightarrow \frac{\mathrm{d}{x}}{\mathrm{d} t} = x \rightarrow \frac{\mathrm{d}{x}}{x} = \mathrm{d} t. 
+\end{equation*}
 
---
 Integramos y obtenemos
-$$ \ln{\frac{x}{x_0}} = t-t_0 \rightarrow x = x_0\exp{(t-t_0)}. $$
+\begin{equation*} 
+\ln{\frac{x}{x_0}} = t-t_0 \rightarrow x = x_0\exp{(t-t_0)}. 
+\end{equation*}
 
----
-class: left
-##Ejemplo
-<br/>
+
 
 Para la componente $y$ se tiene
+\begin{equation*} 
+\frac{\mathrm{d}{y}}{\mathrm{d} t} = v_y \rightarrow \frac{\mathrm{d}{y}}{\mathrm{d} t} = \sqrt{t} \rightarrow \mathrm{d}{y} = t^{1/2}\mathrm{d} t.
+\end{equation*}
 
-$$ \frac{\mathrm{d}\{y}}{\mathrm{d} t} = v_y \rightarrow \frac{\mathrm{d}\{y}}{\mathrm{d} t} = \sqrt{t} \rightarrow \mathrm{d}{y} = t^{1/2}\mathrm{d} t. $$
 
---
 Integramos y obtenemos
-$$ y-y_0 = \frac{2}{3}(t^{3/2}-t_0^{3/2}). $$
 
----
-class: left
-##Ejemplo
+\begin{equation*} 
+y-y_0 = \frac{2}{3}(t^{3/2}-t_0^{3/2}).
+\end{equation*}
+
 
 Las expresiones obtenidas representan las trayectorias de todas las partículas fluidas presentes en nuestro dominio.
-
-$$
+\begin{equation*} 
 \begin{aligned}
 x &= x_0\exp{(t-t_0)},\\\
 y &=y_0+\frac{2}{3}(t^{3/2}-t_0^{3/2}).
 \end{aligned}
-$$
-
---
+\end{equation*}
 
 El siguiente paso es particularizar estas expresiones para una partícula fluida concreta, en este caso la que en el instante $t_0 = 0$ se encuentra en el punto $(x_0, y_0) = (0.1, 0)$, quedando
-
-$$
+\begin{equation*} 
 \begin{aligned}
 x &= 0.1\exp{(t)},\\\
 y &=\frac{2}{3}t^{3/2}.
 \end{aligned}
-$$
+\end{equation*}
+
+:::
+% Fin ejemplo
+---
 
 ---
 class: center
@@ -90,6 +83,109 @@ Trayectoria de la partícula fluida que inicialmente está en el punto $(0.1, 0)
 
 .cite[Esperar a que se carguen las imagenes antes de reproducir.]
 
+
+
+# Animación de Trayectoria
+
+Esta animación muestra la evolución de una trayectoria en el tiempo.
+
+```{code-cell} ipython3
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from IPython.display import HTML
+
+# Configuración de estilo
+plt.rcParams.update({
+    'axes.labelsize': 18,
+    'font.size': 18,
+    'xtick.labelsize': 18,
+    'ytick.labelsize': 18
+})
+```
+
+```{code-cell} ipython3
+# Preparar datos
+T = np.linspace(0, 7, 60)
+X = []
+Y = []
+x0 = 0.1
+y0 = 0
+
+for t in T:
+    x = x0 * np.exp(t)
+    y = y0 + 2 * t**1.5 / 3
+    X.append(x)
+    Y.append(y)
+
+# Crear la figura y los ejes
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.set_xlim(0, 100)
+ax.set_ylim(0, 10)
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+
+line, = ax.plot([], [], 'b', linewidth=2)
+point, = ax.plot([], [], 'bo', markersize=8)
+title = ax.set_title('')
+
+def init():
+    line.set_data([], [])
+    point.set_data([], [])
+    title.set_text('')
+    return line, point, title
+
+def animate(i):
+    line.set_data(X[:i+1], Y[:i+1])
+    point.set_data([X[i]], [Y[i]])
+    title.set_text(f'$t={T[i]:.2f}$')
+    return line, point, title
+
+# Crear la animación
+anim = FuncAnimation(fig, animate, init_func=init, 
+                     frames=len(T), interval=100, 
+                     blit=True, repeat=True)
+
+# Mostrar la animación
+HTML(anim.to_jshtml())
+```
+
+
+
+# Animación de Trayectoria
+
+Esta animación muestra la evolución de una trayectoria en el tiempo.
+
+```{code-cell} python
+%:tags: [remove-input]
+# Data for plotting
+t = np.arange(0.0, 2.0, 0.01)
+s = 1 + np.sin(2 * np.pi * t)
+
+fig, ax = plt.subplots()
+ax.plot(t, s)
+
+ax.set(xlabel='time (s)', ylabel='voltage (mV)',
+       title='Waves in Time')
+ax.grid()
+
+fig.savefig("test.png")
+plt.show()
+```
+## Descripción
+
+La trayectoria sigue las ecuaciones:
+- $x(t) = x_0 e^t$ donde $x_0 = 0.1$
+- $y(t) = y_0 + \frac{2t^{1.5}}{3}$ donde $y_0 = 0$
+
+El parámetro temporal $t$ varía de 0 a 7.
+## Descripción
+
+La trayectoria sigue las ecuaciones:
+- $x(t) = x_0 e^t$ donde $x_0 = 0.1$
+- $y(t) = y_0 + \frac{2t^{1.5}}{3}$ donde $y_0 = 0$
+
+El parámetro temporal $t$ varía de 0 a 7.
 
 
 ---
