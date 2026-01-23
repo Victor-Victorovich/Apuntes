@@ -124,7 +124,7 @@ plt.show()
 
 La trayectoria sigue las ecuaciones:
 - $x(t) = x_0 e^t$ donde $x_0 = 0.1$
-- $y(t) = y_0 + \frac{2t^{1.5}}{3}$ donde $y_0 = 0$
+- $y(t) = y_0 + \dfrac{2t^{1.5}}{3}$ donde $y_0 = 0$
 
 El parámetro temporal $t$ varía de 0 a 7.
 ## Descripción
