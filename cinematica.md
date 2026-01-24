@@ -99,10 +99,6 @@ Trayectoria de la partícula fluida que inicialmente está en el punto $(0.1, 0)
 Esta animación muestra la evolución de una trayectoria en el tiempo.
 
 ```{code-cell} ipython3
----
-thebe: true
----
-%matplotlib inline
 import numpy as np
 import matplotlib
 #matplotlib.rcParams['text.usetex'] = True
