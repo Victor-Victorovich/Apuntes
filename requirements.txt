@@ -1,0 +1,9 @@
+# Motores de ejecución para MyST
+jupyter-server
+nbclient
+
+# Librerías científicas (añade las que uses en tu código)
+numpy
+matplotlib
+pandas
+scipy

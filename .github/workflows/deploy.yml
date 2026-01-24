@@ -26,10 +26,10 @@ jobs:
           # Registra el kernel para que el Session Manager lo encuentre:
           python -m ipykernel install --user --name python3 --display-name "Python 3"
           # Si tienes un requirements.txt, úsalo:
-          # pip install -r requirements.txt 
+          pip install -r requirements.txt 
           # O instala las que necesites a mano:
-          pip install matplotlib pandas numpy
-          pip install jupyter-server
+          #pip install matplotlib pandas numpy
+          #pip install jupyter-server
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
