@@ -44,7 +44,7 @@ jobs:
       - name: Build HTML
         # Ahora MyST sí encontrará el kernel de Python instalado arriba
 #        run: myst build --execute --html
-        run:  jupyter book start --execute --html
+        run:  jupyter book start --execute
 
         env:
           BASE_URL: /${{ github.event.repository.name }}
