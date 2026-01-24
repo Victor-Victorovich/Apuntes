@@ -9,7 +9,7 @@ project:
   authors: 
     - name: Victor Muntean Erhan
   execution:
-      policy: force # Las opciones son: execute, force, o cache
+      policy: execute # Las opciones son: execute, force, o cache
       kernel: python3     # Tiempo máximo por celda en segundos
   # github:
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
