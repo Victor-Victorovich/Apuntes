@@ -35,16 +35,15 @@ jobs:
         with:
           node-version: '20'
 
-      #- name: Install MyST
-        #run: npm install -g mystmd
+      - name: Install MyST
+        run: npm install -g mystmd
 
       - name: Install JBook
         run: npm install -g "jupyter-book"
 
       - name: Build HTML
         # Ahora MyST sí encontrará el kernel de Python instalado arriba
-#        run: myst build --execute --html
-        run:  jupyter book start --execute
+        run: myst build --execute --html
 
         env:
           BASE_URL: /${{ github.event.repository.name }}
