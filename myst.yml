@@ -20,14 +20,21 @@ project:
         - file: intro.md
         - file: cinematica.md
 
+  jupyter:
+    binder:
+      repo: https://github.com/executablebooks/thebe-binder-base
+
 
 # Add a bibtex file so that we can create citations
 bibliography:
   - references.bib
 
 site:
-  template: book-theme
-  # options:
+  
+  #thebe: true 
+   #options:
+  
   #   favicon: favicon.ico
   #   logo: site_logo.png
 
+template: book-theme

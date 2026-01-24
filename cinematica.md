@@ -89,13 +89,7 @@ Trayectoria de la partícula fluida que inicialmente está en el punto $(0.1, 0)
 
 # Animación de Trayectoria
 
-Esta animación muestra la evolución de una trayectoria en el tiempo.
 
-```{code-cell} python3
-:label: markdown-myst
-print("Here's some python!")
-```
-a ver si...
 
 
 
@@ -104,53 +98,35 @@ a ver si...
 
 Esta animación muestra la evolución de una trayectoria en el tiempo.
 
-```{code-cell} python3
-import matplotlib.pyplot as plt
+```{code-cell} ipython3
+---
+thebe: true
+---
+%matplotlib inline
 import numpy as np
-from matplotlib.animation import FuncAnimation
-from IPython.display import HTML
+import matplotlib
+#matplotlib.rcParams['text.usetex'] = True
+#matplotlib.rcParams['text.latex.unicode'] = True
+import matplotlib.pyplot as plt
+from ipywidgets import interactive
+import ipywidgets as widgets
 
-# --- Configuración de la gráfica ---
-fig, ax = plt.subplots(figsize=(8, 4))
-x_data, y_data = [], []
-line, = ax.plot([], [], 'r-', lw=2) # La línea que se va a dibujar
-point, = ax.plot([], [], 'o', color='blue') # El punto que se desplaza
+Q=3
+def fun2(r0,theta0,t):
+    fig = plt.figure(figsize=(13,10))
+    T=np.linspace(0,t,t)
+    theta = theta0*np.ones(np.size(T))
+    r = np.sqrt(r0**2+Q/2/np.pi*T)
+    ax = plt.subplot(111, projection='polar')
+    ax.plot(theta0,r0,'o', linewidth=5)
+    ax.plot(theta,r)
+    ax.grid(True)
+    ax.set_rmax(10)
+    #ax.set_rticks([])
+    #ax.set_xticks([])
 
-ax.set_xlim(0, 2 * np.pi)
-ax.set_ylim(-1.5, 1.5)
-ax.set_title("Animación de y = sen(x)")
-ax.set_xlabel("x")
-ax.set_ylabel("y")
-ax.grid(True)
+interactive(fun2,r0=(0,10,0.2),theta0=(0,np.pi,np.pi/12),t=(0,200))
 
-# --- Función de inicialización (para limpiar la gráfica) ---
-def init():
-    line.set_data([], [])
-    point.set_data([], [])
-    return line, point,
-
-# --- Función de animación (se llama para cada frame) ---
-def animate(i):
-    x = np.linspace(0, 2 * np.pi, 200)
-    y = np.sin(x)
-
-    x_current = x[:i]
-    y_current = y[:i]
-
-    x_point = x[i]
-    y_point = y[i]
-
-    line.set_data(x_current, y_current)
-    point.set_data(x_point, y_point)
-    return line, point,
-
-# --- Crear la animación ---
-ani = FuncAnimation(fig, animate, init_func=init,
-                    frames=200, interval=50, blit=True, repeat=False)
-
-# --- Mostrar la animación en Jupyter ---
-plt.close(fig)
-HTML(ani.to_jshtml())
 ```
 
 ## Descripción
@@ -169,25 +145,17 @@ La trayectoria sigue las ecuaciones:
 El parámetro temporal $t$ varía de 0 a 7.
 
 
----
-name: senda
-class: left
 ##Senda
 
 La senda es la curva que recorre la partícula fluida en su movimiento. Para obtener la ecuación de la senda se debe eliminar el tiempo de la ecuación de la trayectoria donde actúa como un parámetro.
 
---
-
 La diferencia entre la senda y el trayectoria, es que no podemos conocer la posición instantánea de la partícula fluida sobre la senda, sino únicamente el camino que ha recorrido.
-
---
 
 La solución será de la forma:
 
 $$ \mathbf{x} = \mathbf{x}_s(\mathbf{x}_0). $$
 
----
-class: left
+
 ##Ejemplo
 <br/>
 Para el ejemplo propuesto anteriormente, la senda de una partícula fluida que en el instante inicial se encuetra en el punto $(x_0, y_0)$ responde a la expresión
@@ -197,17 +165,13 @@ Esta expresión se ha obtenido despejando $t$ como función de $y$ e $y_0$, y su
 $$x = 0.1\exp\left[\left(\frac{3}{2}y\right)^{3/2}\right] .$$
 
 
----
-class: center
 ##Ejemplo
-
 
 <embed src="./figures/Trayectoria_2.svg">
 
 Senda de la partícula fluida que inicialmente está en el punto $(0.1, 0)$ en azul y trayectoria de la partícula fluida que inicialmente está en el punto $(5, 0.5)$ en rojo.
 
----
-class: center
+
 ##Ejemplo
 
 <embed src="./figures/Trayectoria_3.svg">
