@@ -29,6 +29,7 @@ jobs:
           # pip install -r requirements.txt 
           # O instala las que necesites a mano:
           pip install matplotlib pandas numpy
+          pip install jupyter-server
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
