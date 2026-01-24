@@ -91,7 +91,7 @@ Trayectoria de la partícula fluida que inicialmente está en el punto $(0.1, 0)
 
 Esta animación muestra la evolución de una trayectoria en el tiempo.
 
-```{code-cell} python
+```{code-cell} python3
 :label: markdown-myst
 print("Here's some python!")
 ```
@@ -104,22 +104,55 @@ a ver si...
 
 Esta animación muestra la evolución de una trayectoria en el tiempo.
 
-```{code-cell} python
-# Data for plotting
+```{code-cell} python3
+import matplotlib.pyplot as plt
 import numpy as np
-t = np.arange(0.0, 2.0, 0.01)
-s = 1 + np.sin(2 * np.pi * t)
+from matplotlib.animation import FuncAnimation
+from IPython.display import HTML
 
-fig, ax = plt.subplots()
-ax.plot(t, s)
+# --- Configuración de la gráfica ---
+fig, ax = plt.subplots(figsize=(8, 4))
+x_data, y_data = [], []
+line, = ax.plot([], [], 'r-', lw=2) # La línea que se va a dibujar
+point, = ax.plot([], [], 'o', color='blue') # El punto que se desplaza
 
-ax.set(xlabel='time (s)', ylabel='voltage (mV)',
-       title='Waves in Time')
-ax.grid()
+ax.set_xlim(0, 2 * np.pi)
+ax.set_ylim(-1.5, 1.5)
+ax.set_title("Animación de y = sen(x)")
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.grid(True)
 
-fig.savefig("test.png")
-plt.show()
+# --- Función de inicialización (para limpiar la gráfica) ---
+def init():
+    line.set_data([], [])
+    point.set_data([], [])
+    return line, point,
+
+# --- Función de animación (se llama para cada frame) ---
+def animate(i):
+    x = np.linspace(0, 2 * np.pi, 200)
+    y = np.sin(x)
+
+    x_current = x[:i]
+    y_current = y[:i]
+
+    x_point = x[i]
+    y_point = y[i]
+
+    line.set_data(x_current, y_current)
+    point.set_data(x_point, y_point)
+    return line, point,
+
+# --- Crear la animación ---
+ani = FuncAnimation(fig, animate, init_func=init,
+                    frames=200, interval=50, blit=True, repeat=False)
+
+# --- Mostrar la animación en Jupyter ---
+plt.close(fig)
+HTML(ani.to_jshtml())
 ```
+
 ## Descripción
 
 La trayectoria sigue las ecuaciones:
