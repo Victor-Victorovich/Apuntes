@@ -98,67 +98,83 @@ Trayectoria de la partícula fluida que inicialmente está en el punto $(0.1, 0)
 import plotly.graph_objects as go
 import numpy as np
 
-# 1. Configuración de datos
-Q = 3
-t_max = 200
-r0_val = 5        # Valor inicial fijo para r0
-theta0_val = 0    # Valor inicial fijo para theta0
+# 1. Datos y parámetros
+T = np.linspace(0, 7, 60)
+x0 = 0.1
+y0 = 0
 
-# Creamos un rango de pasos para el slider (por ejemplo, el tiempo 't')
-t_steps = np.arange(0, t_max + 1, 5) 
+# Pre-calculamos toda la trayectoria completa para poder segmentarla
+full_x = x0 * np.exp(T)
+full_y = y0 + 2 * T**1.5 / 3
 
-# 2. Crear la figura
 fig = go.Figure()
 
-# Añadimos una traza por cada paso del tiempo 't'
-for t in t_steps:
-    T_range = np.linspace(0, t, max(2, int(t)))
-    theta = np.full(T_range.shape, theta0_val)
-    r = np.sqrt(r0_val**2 + Q / (2 * np.pi) * T_range)
+# 2. Creamos las trazas (una por cada paso de tiempo)
+for i, t in enumerate(T):
+    # Segmento de trayectoria hasta el tiempo t
+    current_x = full_x[:i+1]
+    current_y = full_y[:i+1]
     
+    # Añadimos la línea (trayectoria recorrida)
     fig.add_trace(
-        go.Scatterpolar(
-            r=r,
-            theta=np.degrees(theta), # Plotly usa grados por defecto
+        go.Scatter(
+            x=current_x, 
+            y=current_y,
             mode='lines',
-            name=f't={t}',
+            line=dict(color='blue', width=2),
             visible=False,
-            line=dict(color="firebrick", width=2)
+            name=f"Trayectoria t={t:.2f}"
+        )
+    )
+    
+    # Añadimos el punto (posición actual)
+    fig.add_trace(
+        go.Scatter(
+            x=[full_x[i]], 
+            y=[full_y[i]],
+            mode='markers',
+            marker=dict(color='blue', size=10),
+            visible=False,
+            showlegend=False
         )
     )
 
-# Hacer visible solo la primera traza
+# Hacer visible el primer frame (índice 0 y 1 porque son línea + punto)
 fig.data[0].visible = True
+fig.data[1].visible = True
 
-# 3. Crear el Slider
+# 3. Construir el Slider
 steps = []
-for i in range(len(fig.data)):
+for i, t in enumerate(T):
+    # Cada paso del slider debe encender la pareja (línea, punto) correspondiente
     step = dict(
         method="update",
+        label=f"{t:.2f}",
         args=[{"visible": [False] * len(fig.data)},
-              {"title": f"Evolución temporal: t = {t_steps[i]}"}],
-        label=str(t_steps[i])
+              {"title": f"Trayectoria en t = {t:.2f}"}]
     )
-    step["args"][0]["visible"][i] = True
+    # Activamos la línea y el punto de este frame
+    step["args"][0]["visible"][i*2] = True
+    step["args"][0]["visible"][i*2 + 1] = True
     steps.append(step)
 
 sliders = [dict(
     active=0,
-    currentvalue={"prefix": "Tiempo (t): "},
+    currentvalue={"prefix": "Tiempo: "},
     pad={"t": 50},
     steps=steps
 )]
 
-# 4. Ajustar diseño polar
+# 4. Diseño del gráfico (reemplaza xlim, ylim y figsize)
 fig.update_layout(
     sliders=sliders,
-    polar=dict(
-        radialaxis=dict(range=[0, 10], gridcolor="lightgrey"),
-        angularaxis=dict(gridcolor="lightgrey")
-    ),
-    showlegend=False,
-    width=700,
-    height=600
+    xaxis=dict(range=[0, 100], title="X", gridcolor='lightgrey'),
+    yaxis=dict(range=[0, 10], title="Y", gridcolor='lightgrey'),
+    width=800,
+    height=600,
+    template="plotly_white",
+    title=f"Trayectoria en t = {T[0]:.2f}",
+    showlegend=False
 )
 
 fig.show()
@@ -262,32 +278,6 @@ fig.show()
 
 Esta animación muestra la evolución de una trayectoria en el tiempo.
 
-```{code-cell} ipython3
-import numpy as np
-import matplotlib
-#matplotlib.rcParams['text.usetex'] = True
-#matplotlib.rcParams['text.latex.unicode'] = True
-import matplotlib.pyplot as plt
-from ipywidgets import interactive
-import ipywidgets as widgets
-
-Q=3
-def fun2(r0,theta0,t):
-    fig = plt.figure(figsize=(13,10))
-    T=np.linspace(0,t,t)
-    theta = theta0*np.ones(np.size(T))
-    r = np.sqrt(r0**2+Q/2/np.pi*T)
-    ax = plt.subplot(111, projection='polar')
-    ax.plot(theta0,r0,'o', linewidth=5)
-    ax.plot(theta,r)
-    ax.grid(True)
-    ax.set_rmax(10)
-    #ax.set_rticks([])
-    #ax.set_xticks([])
-
-interactive(fun2,r0=(0,10,0.2),theta0=(0,np.pi,np.pi/12),t=(0,200))
-
-```
 
 ## Descripción
 
