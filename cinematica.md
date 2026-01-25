@@ -22,14 +22,15 @@ La solución será de la forma:
 
 $$ \mathbf{x} = \mathbf{x}_t(t,\mathbf{x}_0). $$
 
----
-## Ejemplo
+
+
+::::{tip} Ejemplo
+:class: simple
 Sea un campo fluido bidimensional del que se conoce su velocidad en cada punto, $(v_x, v_y) = (x, \sqrt{t})$.
 
 ¿Cuál es la trayectoria de una partícula fluida que en el instante inicial pasa por el punto $(0.1,0)$?
 
-:::{tip} Solución
-:class: dropdown
+:::{dropdown} Solución
 :open: false
 Para la componente $x$ se tiene
 
@@ -75,8 +76,10 @@ y &=\frac{2}{3}t^{3/2}.
 \end{equation*}
 
 :::
+::::
 % Fin ejemplo
----
+
+
 
 
 <embed src="./figures/Trayectoria_1.svg">
@@ -90,40 +93,6 @@ Trayectoria de la partícula fluida que inicialmente está en el punto $(0.1, 0)
 # Animación de Trayectoria
 
 
-
-
-
-
-# Animación de Trayectoria
-
-Esta animación muestra la evolución de una trayectoria en el tiempo.
-
-```{code-cell} ipython3
-import numpy as np
-import matplotlib
-#matplotlib.rcParams['text.usetex'] = True
-#matplotlib.rcParams['text.latex.unicode'] = True
-import matplotlib.pyplot as plt
-from ipywidgets import interactive
-import ipywidgets as widgets
-
-Q=3
-def fun2(r0,theta0,t):
-    fig = plt.figure(figsize=(13,10))
-    T=np.linspace(0,t,t)
-    theta = theta0*np.ones(np.size(T))
-    r = np.sqrt(r0**2+Q/2/np.pi*T)
-    ax = plt.subplot(111, projection='polar')
-    ax.plot(theta0,r0,'o', linewidth=5)
-    ax.plot(theta,r)
-    ax.grid(True)
-    ax.set_rmax(10)
-    #ax.set_rticks([])
-    #ax.set_xticks([])
-
-interactive(fun2,r0=(0,10,0.2),theta0=(0,np.pi,np.pi/12),t=(0,200))
-
-```
 
 ## Descripción
 
