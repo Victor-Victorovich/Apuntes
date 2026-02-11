@@ -12,17 +12,24 @@ project:
       policy: execute # Las opciones son: execute, force, o cache
       kernel: python3     # Tiempo máximo por celda en segundos
   # github:
+
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
   toc:
     - file: inicio.md
-    - title: Mecánica de Fluidos
-      children:
-        - file: intro.md
-        - file: cinematica.md
+    - file: prefacio.md
+    - file: intro.md
+    - file: cinematica.md
+    - file: ecuaciones.md
 
-  jupyter:
-    binder:
-      repo: https://github.com/executablebooks/thebe-binder-base
+  # Habilita un botón que enciente un kernel para trabajar.
+  #jupyter:
+   # binder:
+    #  repo: https://github.com/executablebooks/thebe-binder-base
+
+
+
+  #jupyter:
+  #  lite: true
 
 
 # Add a bibtex file so that we can create citations
@@ -32,7 +39,10 @@ bibliography:
 site:
   template: book-theme
   #thebe: true 
-   #options:
+  options:
+    #hide_footer_links: true  # Esto suele ocultar los enlaces por defecto de MyST/GitHub
+    # Si quieres personalizar el texto por completo:
+    footer_text: "© 2026 Tu Nombre"
   
   #   favicon: favicon.ico
   #   logo: site_logo.png

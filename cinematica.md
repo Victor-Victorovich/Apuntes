@@ -2,11 +2,13 @@
 kernelspec:
   name: python3
   display_name: 'Python 3'
+
+title: Cinemática
 ---
 
-# Cinemática
 
-## Trayectoria
+
+# Trayectoria
 
 La trayectoria es la ley que da la posición de una partícula fluida como función del tiempo y de su posición inicial. Si se conoce el campo de velocidades, 
 $\mathbf{v}(\mathbf{x},t)$, la trayectoria responde a la ecuación $$ \frac{\mathrm{d}\mathbf{x}}{\mathrm{d} t} = \mathbf{v}(\mathbf{x},t).$$    
@@ -23,6 +25,32 @@ La solución será de la forma:
 $$ \mathbf{x} = \mathbf{x}_t(t,\mathbf{x}_0). $$
 
 
+```{code-cell} ipython3
+import numpy as np
+import matplotlib
+#matplotlib.rcParams['text.usetex'] = True
+#matplotlib.rcParams['text.latex.unicode'] = True
+import matplotlib.pyplot as plt
+from ipywidgets import interactive
+import ipywidgets as widgets
+
+Q=3
+def fun2(r0,theta0,t):
+    fig = plt.figure(figsize=(13,10))
+    T=np.linspace(0,t,t)
+    theta = theta0*np.ones(np.size(T))
+    r = np.sqrt(r0**2+Q/2/np.pi*T)
+    ax = plt.subplot(111, projection='polar')
+    ax.plot(theta0,r0,'o', linewidth=5)
+    ax.plot(theta,r)
+    ax.grid(True)
+    ax.set_rmax(10)
+    #ax.set_rticks([])
+    #ax.set_xticks([])
+
+interactive(fun2,r0=(0,10,0.2),theta0=(0,np.pi,np.pi/12),t=(0,200))
+
+```
 
 ::::{tip} Ejemplo
 :class: simple
@@ -90,7 +118,7 @@ Trayectoria de la partícula fluida que inicialmente está en el punto $(0.1, 0)
 
 
 
-# Animación de Trayectoria
+## Animación de Trayectoria
 
 
 ```{code-cell} ipython3
@@ -286,6 +314,7 @@ La trayectoria sigue las ecuaciones:
 - $y(t) = y_0 + \dfrac{2t^{1.5}}{3}$ donde $y_0 = 0$
 
 El parámetro temporal $t$ varía de 0 a 7.
+
 ## Descripción
 
 La trayectoria sigue las ecuaciones:
@@ -294,8 +323,7 @@ La trayectoria sigue las ecuaciones:
 
 El parámetro temporal $t$ varía de 0 a 7.
 
-
-##Senda
+## Senda
 
 La senda es la curva que recorre la partícula fluida en su movimiento. Para obtener la ecuación de la senda se debe eliminar el tiempo de la ecuación de la trayectoria donde actúa como un parámetro.
 
@@ -306,7 +334,7 @@ La solución será de la forma:
 $$ \mathbf{x} = \mathbf{x}_s(\mathbf{x}_0). $$
 
 
-##Ejemplo
+##  Ejemplo
 <br/>
 Para el ejemplo propuesto anteriormente, la senda de una partícula fluida que en el instante inicial se encuetra en el punto $(x_0, y_0)$ responde a la expresión
 $$x = x_0\exp\left[\left(\frac{3}{2}(y-y_0)\right)^{3/2}\right] .$$
@@ -315,14 +343,14 @@ Esta expresión se ha obtenido despejando $t$ como función de $y$ e $y_0$, y su
 $$x = 0.1\exp\left[\left(\frac{3}{2}y\right)^{3/2}\right] .$$
 
 
-##Ejemplo
+## Ejemplo
 
 <embed src="./figures/Trayectoria_2.svg">
 
 Senda de la partícula fluida que inicialmente está en el punto $(0.1, 0)$ en azul y trayectoria de la partícula fluida que inicialmente está en el punto $(5, 0.5)$ en rojo.
 
 
-##Ejemplo
+## Ejemplo
 
 <embed src="./figures/Trayectoria_3.svg">
 
@@ -330,7 +358,7 @@ Trayectorias de dos partículas fluidas que inicialmente están en los puntos $(
 
 ---
 class: left
-##Línea de traza
+## Línea de traza
 <br/>
 Si a partir de un instante inicial se introduce un colorante en un punto $\mathbf{x}_T$ en el seno de un fluido, de tal forma que toda partícula fluida que pase por ese punto quede marcada, 
 la línea formada por estas partículas coloreadas se denomina *línea de traza*.
@@ -341,7 +369,7 @@ En un instante $t$ dado, las partículas fluidas que forman la línea de traza h
 
 ---
 class: left
-##Línea de traza
+## Línea de traza
 <br/>
 La línea de traza responde a la misma equación que la trayectoria, 
 $$ \frac{\mathrm{d}\mathbf{x}}{\mathrm{d} t} = \mathbf{v}(\mathbf{x},t).$$ 
@@ -359,7 +387,7 @@ $$ \mathbf{x} = \mathbf{x}\_{z}(t, \tau, \mathbf{x}_T).$$
 
 ---
 class: left
-##Ejemplo
+## Ejemplo
 <br/>
 Volviendo al ejemplo anterior para el que ya conocemos las trayectorias de todas las partículas del campo fluido que en el instante $t=0$ se encuentran en la posición $(x,y)=(x_0,y_0)$:
 $$ x = x_0\exp{(t)}. $$
@@ -370,7 +398,7 @@ Lo único que se necesita es identificar cuáles han pasado en el instante $\tau
 
 ---
 class: left
-##Ejemplo
+## Ejemplo
 
 Para imponer esta condición se impone que en el instante $t=\tau$ la posición de la partícula fluida es $(x,y)=(x_T,y_T)$. Recurriendo a la expresión de la trayectoría, se tiene:
 $$ x_T = x_0\exp{(\tau)}, $$
@@ -384,7 +412,7 @@ $$y_0 = y_T - \frac{2}{3}\tau^{3/2}$$
 
 ---
 class: left
-##Ejemplo
+## Ejemplo
 <br/><br/>
 
 Finalmente la expresión de la traza quedaría
@@ -393,7 +421,7 @@ $$ y = y_T + \frac{2}{3}\left(t^{3/2}-\tau^{3/2}\right).$$
 
 ---
 class: center
-##Ejemplo
+## Ejemplo
 
 <embed src="./figures/STraza.svg">
 
@@ -401,7 +429,7 @@ Línea de traza para un marcador situado en el punto $(5, 2)$.
 
 ---
 class: center
-##Ejemplo
+## Ejemplo
 
 <embed src="./figures/Traza.svg">
 
@@ -410,7 +438,7 @@ Línea de traza para un marcador situado en el punto $(5, 2)$ junto a las trayec
 
 ---
 class: left
-##Línea de corriente
+## Línea de corriente
 <br/>
 La línea de corriente es una línea que, en un instante dado, es tangente en cada uno de sus puntos a la velocidad local del fluido. Indica gráficamente cómo se está moviendo el fluido en ese instante.
 
