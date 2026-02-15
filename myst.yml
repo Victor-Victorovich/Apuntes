@@ -17,6 +17,7 @@ project:
   toc:
     - file: inicio.md
     - file: prefacio.md
+    - file: previos.md
     - file: intro.md
     - file: cinematica.md
     - file: ecuaciones.md
