@@ -8,6 +8,9 @@
     <loc>http://localhost:3000/prefacio</loc>
   </url>
   <url>
+    <loc>http://localhost:3000/previos</loc>
+  </url>
+  <url>
     <loc>http://localhost:3000/intro</loc>
   </url>
   <url>
