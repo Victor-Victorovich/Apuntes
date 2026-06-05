@@ -45,8 +45,6 @@ site:
     # Si quieres personalizar el texto por completo:
     footer_text: "© 2026 Tu Nombre"
 
-  analytics:
-    cloudflare: dc6e3e5eba894504a1e2f6ba383042ae  # Solo el chorizo de letras y números del token
   
   #   favicon: favicon.ico
   #   logo: site_logo.png
